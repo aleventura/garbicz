@@ -1,0 +1,839 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Garbicz 2026 — Thursday (52 acts)</title>
+<style>
+:root{--bg:#0d0f13;--bar:#12151b;--card:#171a21;--acc:#e8b64c;--txt:#e8e9ec;--mut:#9aa0ab;--line:#23272f;}
+*{box-sizing:border-box}html,body{margin:0}body{background:var(--bg);color:var(--txt);font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.45}
+.topbar{position:sticky;top:0;z-index:10;background:var(--bar);border-bottom:1px solid var(--line);padding:12px 20px}
+.toprow{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.topbar h1{font-size:16px;margin:0 8px 0 0;white-space:nowrap}
+.topbar label.sel{font-size:12px;color:var(--mut);display:flex;gap:6px;align-items:center}
+.topbar select{background:#0d0f13;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:13px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:4px 10px;cursor:pointer;color:var(--mut);user-select:none}
+.chip input{display:none}.chip-dot{width:10px;height:10px;border-radius:50%;opacity:.35}
+.chip:has(input:checked){color:var(--txt);border-color:var(--c)}.chip:has(input:checked) .chip-dot{opacity:1}
+.chipbtns{display:flex;gap:8px;margin-top:10px}
+.chipbtns button{background:#0d0f13;color:var(--mut);border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-size:11.5px;cursor:pointer}
+.cnt{font-size:12px;color:var(--mut);margin-left:auto}
+.wrap{max-width:980px;margin:0 auto;padding:10px 16px 60px}
+.row{border-bottom:1px solid var(--line)}
+.r-head{width:100%;background:none;border:0;color:var(--txt);text-align:left;display:flex;align-items:center;gap:12px;padding:11px 8px;cursor:pointer;font-size:14px}
+.r-head:hover{background:#151922}
+.r-caret{color:var(--acc);transition:transform .15s;display:inline-block;width:12px}
+.r-head[aria-expanded="true"] .r-caret{transform:rotate(90deg)}
+.r-time{color:var(--acc);font-variant-numeric:tabular-nums;font-weight:600;width:46px;flex:none}
+.r-day{color:var(--mut);width:64px;flex:none;font-size:12px}
+.r-stage{border-radius:6px;padding:1px 8px;font-size:11px;font-weight:700;white-space:nowrap;flex:none}
+.r-name{font-weight:600;flex:1 1 auto;min-width:120px}
+.r-nat{color:var(--acc);font-size:12.5px;text-align:right;flex:none;max-width:38%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.r-detail{display:none;padding:6px 10px 18px 22px;background:#12151b;margin-left:8px}
+.r-head[aria-expanded="true"]+.r-detail{display:block}
+.d-field{margin-top:10px}
+.d-lbl{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.7px;color:var(--mut);margin-bottom:2px}
+.d-val{font-size:14px}.d-val.nat{color:var(--acc);font-weight:600}.muted{color:var(--mut)}
+.sets{margin:4px 0 0;padding:0;list-style:none}
+.sets li{padding:3px 0 3px 10px;margin:4px 0;font-size:13.5px}
+.sets a{text-decoration:none;font-weight:600}.sets a:hover{text-decoration:underline}
+.note{color:var(--mut);font-size:12px;margin-top:26px;padding-top:14px;border-top:1px solid var(--line)}
+@media(max-width:640px){.r-day{display:none}.r-nat{display:none}}
+</style></head><body>
+<div class="topbar">
+  <div class="toprow">
+    <h1>Garbicz 2026 · Thursday</h1>
+    <label class="sel">Day<select id="fDay"><option value="">All</option><option value="Thursday" selected>Thursday</option></select></label>
+    <span class="cnt" id="cnt"></span>
+  </div>
+  <div class="chips"><label class="chip" style="--c:#72c6a5"><input type="checkbox" class="fStage" value="AMBIENT FLOOR" checked><span class="chip-dot" style="background:#72c6a5"></span>AMBIENT FLOOR</label><label class="chip" style="--c:#b2d234"><input type="checkbox" class="fStage" value="BUK" checked><span class="chip-dot" style="background:#b2d234"></span>BUK</label><label class="chip" style="--c:#fff78f"><input type="checkbox" class="fStage" value="LICHTUNG" checked><span class="chip-dot" style="background:#fff78f"></span>LICHTUNG</label><label class="chip" style="--c:#faa619"><input type="checkbox" class="fStage" value="LOCO PARAISO" checked><span class="chip-dot" style="background:#faa619"></span>LOCO PARAISO</label><label class="chip" style="--c:#68c9d0"><input type="checkbox" class="fStage" value="PLEASURE ISLAND" checked><span class="chip-dot" style="background:#68c9d0"></span>PLEASURE ISLAND</label><label class="chip" style="--c:#52caf5"><input type="checkbox" class="fStage" value="SEE" checked><span class="chip-dot" style="background:#52caf5"></span>SEE</label><label class="chip" style="--c:#0bb14b"><input type="checkbox" class="fStage" value="WALD" checked><span class="chip-dot" style="background:#0bb14b"></span>WALD</label><label class="chip" style="--c:#d78e55"><input type="checkbox" class="fStage" value="WEINBAR" checked><span class="chip-dot" style="background:#d78e55"></span>WEINBAR</label><label class="chip" style="--c:#f0679f"><input type="checkbox" class="fStage" value="WIESE" checked><span class="chip-dot" style="background:#f0679f"></span>WIESE</label></div>
+  <div class="chipbtns"><button id="allBtn">All stages</button><button id="noneBtn">Clear</button></div>
+</div>
+<div class="wrap" id="list">
+<div class="row" data-stage="WEINBAR" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">13:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#d78e55;color:#111">WEINBAR</span>
+      <span class="r-name">Thorleif</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #d78e55">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">13:00 – 17:00</span></div>
+      
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Unclear profile.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Small or recently emerging act; no solid biography found.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="LOCO PARAISO" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">14:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#faa619;color:#111">LOCO PARAISO</span>
+      <span class="r-name">Opening ceremony Performance</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #faa619">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">14:00 – 16:00</span></div>
+      
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Opening ceremony (performance/ritual), not a DJ set.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Festival inauguration.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="BUK" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">15:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#b2d234;color:#111">BUK</span>
+      <span class="r-name">Immy b2b Triqi Garage Girls Takeover</span><span class="r-nat">Germany — Berlin</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #b2d234">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">15:00 – 18:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany — Berlin</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">House blended with garage, trance, electro and disco; high-energy.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Garage Girls (Berlin party series)</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Berlin-raised sisters Imad &amp; Triqi. Part of the Garage Girls collective.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="SEE" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">15:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#52caf5;color:#111">SEE</span>
+      <span class="r-name">Cassette Heads Takeover live</span><span class="r-nat">Germany — Berlin (collective)</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #52caf5">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">15:00 – 21:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany — Berlin (collective)</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Live electronic-jazz / jazzy house.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Michelberger Hotel (Berlin)</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Berlin electronic-jazz underground live band; four artists with diverse backgrounds.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="LOCO PARAISO" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">16:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#faa619;color:#111">LOCO PARAISO</span>
+      <span class="r-name">ABĒDI</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #faa619">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">16:00 – 18:00</span></div>
+      
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Likely melodic house/techno.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Unclear profile; no solid biography located.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="WALD" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">17:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#0bb14b;color:#fff">WALD</span>
+      <span class="r-name">M.Morellion b2b dj-spock</span><span class="r-nat">Germany — Berlin (tentative)</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #0bb14b">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">17:00 – 19:30</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany — Berlin (tentative)</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Club/techno b2b.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Chaos Computer Music Club, THF Radio (Berlin)</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Morellion tied to Berlin radio/club scene; b2b with dj-spock.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="PLEASURE ISLAND" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">17:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#68c9d0;color:#111">PLEASURE ISLAND</span>
+      <span class="r-name">Bling Bling Papaya live</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #68c9d0">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">17:00 – 18:00</span></div>
+      
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Live act; style unconfirmed.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Ambiguous identity.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="WEINBAR" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">17:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#d78e55;color:#111">WEINBAR</span>
+      <span class="r-name">Deafcandance b2b Frau Kochmann</span><span class="r-nat">Polish scene (Warsaw) — tentative</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #d78e55">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">17:00 – 20:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Polish scene (Warsaw) — tentative</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Hypnotic/hard techno b2b.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Danse Macabre (Warsaw), Summer Contrast, Audioriver</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">deafcandance: DJ born with severe hearing loss, 20+ years of hypnotic sets. Frau Kochmann active in the Polish scene.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #d78e55"><a href="https://soundcloud.com/deafcandance/deaf-can-dance-summer-contrast-2024" target="_blank" rel="noopener" style="color:#d78e55">deafcandance @ Summer Contrast 2024 | Oak Stage</a> <em>(2024)</em></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="WIESE" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">18:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#f0679f;color:#111">WIESE</span>
+      <span class="r-name">Soukie &amp; Windish</span><span class="r-nat">Germany — Hamburg/Berlin</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #f0679f">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">18:00 – 20:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany — Hamburg/Berlin</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Psychedelic tech house and techno.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Fusion, Garbicz, German club circuit</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Duo (Nayan Soukie + Windish); labels URSL, Liebe*Detail, darkroom dubs.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #f0679f"><a href="https://soundcloud.com/soukie-windish" target="_blank" rel="noopener" style="color:#f0679f">Soukie &amp; Windish — SoundCloud profile</a></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="BUK" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">18:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#b2d234;color:#111">BUK</span>
+      <span class="r-name">Jana Falcon</span><span class="r-nat">Germany — Berlin (grew up near Frankfurt)</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #b2d234">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">18:00 – 20:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany — Berlin (grew up near Frankfurt)</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">House and deep, vinyl-rooted.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Garage Girls, BRENN.</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Queer DJ/producer, resident of Garage Girls and BRENN.; former vinyl cutting engineer.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #b2d234"><a href="https://soundcloud.com/jana-falcon" target="_blank" rel="noopener" style="color:#b2d234">Jana Falcon — SoundCloud profile</a></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="LOCO PARAISO" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">18:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#faa619;color:#111">LOCO PARAISO</span>
+      <span class="r-name">Okraa live</span><span class="r-nat">Colombia</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #faa619">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">18:00 – 19:30</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Colombia</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Live electronic with afro-latin percussion and organic groove.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">fabric (London), NEST Microfest</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Colombian artist; OATH label.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #faa619"><a href="https://soundcloud.com/openlabradio/okraa-selectors" target="_blank" rel="noopener" style="color:#faa619">OpenLab Selectors [with OKRAA]</a> <em>(OpenLab Radio)</em></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="PLEASURE ISLAND" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">18:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#68c9d0;color:#111">PLEASURE ISLAND</span>
+      <span class="r-name">Chanella</span><span class="r-nat">Germany — Berlin</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #68c9d0">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">18:00 – 20:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany — Berlin</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Afro house, Afrobeats and Baile Funk.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Kater Blau, MAAYA Berlin, Refuge Worldwide</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Emerging DJ in the Berlin scene.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #68c9d0"><a href="https://soundcloud.com/refugeworldwide/nomansland-takeover-chanella" target="_blank" rel="noopener" style="color:#68c9d0">Nomansland Takeover - Chanella (Refuge Worldwide)</a> <em>(6 Sep 2025)</em></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="LICHTUNG" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">18:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#fff78f;color:#111">LICHTUNG</span>
+      <span class="r-name">Jai Dev Singh - Kundalini Activation</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #fff78f">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">18:00 – 20:00</span></div>
+      
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Kundalini Yoga and sound healing; ceremony, not a DJ set.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Healing Festival, retreats</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Renowned Kundalini Yoga, Ayurveda and Yogic Astrology teacher.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="AMBIENT FLOOR" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">19:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#72c6a5;color:#111">AMBIENT FLOOR</span>
+      <span class="r-name">After Bobbie Williams live</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #72c6a5">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">19:00 – 21:00</span></div>
+      
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Playful/tribute live act.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Party act; origin not determined.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="WALD" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">19:30</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#0bb14b;color:#fff">WALD</span>
+      <span class="r-name">Mathew Jonson &amp; .Vril</span><span class="r-nat">Canada &amp; Germany</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #0bb14b">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">19:30 – 21:30</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Canada &amp; Germany</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Melodic/minimal techno + hypnotic dub techno (live).</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Movement Detroit, ADE, Dimensions</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Mathew Jonson (Canadian, b.1978). .Vril (German, Giegling/Delsin), hypnotic dub techno.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #0bb14b"><a href="https://soundcloud.com/dimensionsfestival/mathew-jonson-live-from" target="_blank" rel="noopener" style="color:#0bb14b">Mathew Jonson (live) — Dimensions Festival</a> <em>(Dimensions · live)</em></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="LOCO PARAISO" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">19:30</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#faa619;color:#111">LOCO PARAISO</span>
+      <span class="r-name">Opal Sunn live</span><span class="r-nat">Berlin-based (Alex Kassian, born in Kyoto + Hiroaki OBA, Japan)</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #faa619">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">19:30 – 20:30</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Berlin-based (Alex Kassian, born in Kyoto + Hiroaki OBA, Japan)</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Warm, dreamy melodic electronica, live.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Savage (Saigon), ambient/live circuit</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Live duo of Alex Kassian and Hiroaki OBA.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #faa619"><a href="https://soundcloud.com/opalsunn" target="_blank" rel="noopener" style="color:#faa619">Opal Sunn — SoundCloud profile</a></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="WIESE" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">20:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#f0679f;color:#111">WIESE</span>
+      <span class="r-name">Adam Port</span><span class="r-nat">Poland (Berlin-based)</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #f0679f">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">20:00 – 22:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Poland (Berlin-based)</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Deep house, melodic house and tech house.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Afterlife, Coachella, Circoloco, Time Warp</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Adam Polaszek (b.1979); founding member of Keinemusik.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #f0679f"><a href="https://soundcloud.com/thelotradio/adam-port-the-lot-radio-02-21-2024" target="_blank" rel="noopener" style="color:#f0679f">Adam Port (Keinemusik) @ The Lot Radio</a> <em>(21 Feb 2024)</em></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="BUK" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">20:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#b2d234;color:#111">BUK</span>
+      <span class="r-name">KENZA / DJ NORTHERN</span><span class="r-nat">KENZA: South Africa</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #b2d234">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">20:00 – 22:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">KENZA: South Africa</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Afro house / South African electronic.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">KENZA: South African DJ/producer. DJ Northern: not determined.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="PLEASURE ISLAND" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">20:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#68c9d0;color:#111">PLEASURE ISLAND</span>
+      <span class="r-name">Bipolar Soundsystem</span><span class="r-nat">Germany — Berlin (Nigerian roots)</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #68c9d0">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">20:00 – 22:30</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany — Berlin (Nigerian roots)</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Afro-tech and Afro-house.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Bipolar Berlin, Berlin Braves</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Duo from the Bipolar Berlin collective.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #68c9d0"><a href="https://soundcloud.com/bipolar-soundsystem" target="_blank" rel="noopener" style="color:#68c9d0">bipolar soundsystem — SoundCloud profile</a></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="LICHTUNG" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">20:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#fff78f;color:#111">LICHTUNG</span>
+      <span class="r-name">Colibri b2b Intiche</span><span class="r-nat">Latin America / organic scene</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #fff78f">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">20:00 – 22:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Latin America / organic scene</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Organic house and downtempo.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Ancient Future Gathering, Colibri Spirit</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Intiche fuses natural organic sounds (Agami Records). Colibri blends world music.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #fff78f"><a href="https://soundcloud.com/intiche" target="_blank" rel="noopener" style="color:#fff78f">Intiche — SoundCloud profile</a></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="WEINBAR" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">20:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#d78e55;color:#111">WEINBAR</span>
+      <span class="r-name">Karaoke mit KiKi</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #d78e55">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">20:00 – 22:00</span></div>
+      
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Karaoke session (playful act), not a DJ set.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Participatory festival activity.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="LOCO PARAISO" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">20:30</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#faa619;color:#111">LOCO PARAISO</span>
+      <span class="r-name">Kapten</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #faa619">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">20:30 – 22:30</span></div>
+      
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Likely laid-back house/techno.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Ambiguous profile.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="SEE" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">21:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#52caf5;color:#111">SEE</span>
+      <span class="r-name">Adi</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #52caf5">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">21:00 – 23:00</span></div>
+      
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Name too generic to identify.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="AMBIENT FLOOR" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">21:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#72c6a5;color:#111">AMBIENT FLOOR</span>
+      <span class="r-name">DS8003</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #72c6a5">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">21:00 – 00:00</span></div>
+      
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Likely techno.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">No locatable profile.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="WALD" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">21:30</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#0bb14b;color:#fff">WALD</span>
+      <span class="r-name">DJ Maria</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #0bb14b">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">21:30 – 23:30</span></div>
+      
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Generic name; no reliable identification.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="WIESE" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">22:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#f0679f;color:#111">WIESE</span>
+      <span class="r-name">Alex Kassian</span><span class="r-nat">Japan (born in Kyoto), Berlin-based</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #f0679f">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">22:00 – 00:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Japan (born in Kyoto), Berlin-based</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Euphoric trance and progressive house, cinematic.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Wonderfruit, Love International, Rainbow Disco Club</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Love On The Rocks member; also Opal Sunn duo.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #f0679f"><a href="https://soundcloud.com/wonderfruitfestival/alex-kassian-solar-village-wonderfruit-2023" target="_blank" rel="noopener" style="color:#f0679f">Alex Kassian – Solar Village – Wonderfruit 2023</a> <em>(2023 · Wonderfruit)</em></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="BUK" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">22:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#b2d234;color:#111">BUK</span>
+      <span class="r-name">Garage Girls</span><span class="r-nat">Germany — Berlin (collective)</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #b2d234">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">22:00 – 00:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany — Berlin (collective)</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">House, garage and community-driven club.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Garage Girls FM, Honey Tapes</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Female-queer party series and collective from Berlin.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="LICHTUNG" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">22:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#fff78f;color:#111">LICHTUNG</span>
+      <span class="r-name">Cabaret Cravache feat. 5.String.Theory live</span><span class="r-nat">Germany — Berlin (collective)</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #fff78f">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">22:00 – 00:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany — Berlin (collective)</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Cabaret/performance with slow, sensual live music.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Ballhaus Berlin</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Cabaret collective (poetry, music, role-play, kink).</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="WEINBAR" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">22:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#d78e55;color:#111">WEINBAR</span>
+      <span class="r-name">Qualia Trax</span><span class="r-nat">Germany — Berlin</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #d78e55">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">22:00 – 00:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany — Berlin</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Glimmering house and vibrant soundscapes.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">NEST, HÖR, ACUD</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Founder of the queer sex-positive party NEST in Berlin.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #d78e55"><a href="https://soundcloud.com/qualia-trax" target="_blank" rel="noopener" style="color:#d78e55">Qualia Trax — SoundCloud profile</a></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="LOCO PARAISO" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">22:30</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#faa619;color:#111">LOCO PARAISO</span>
+      <span class="r-name">Sascha Cawa</span><span class="r-nat">Germany — Berlin</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #faa619">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">22:30 – 00:30</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany — Berlin</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Deep, emotive techno.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Kater Blau (resident), Garbicz</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Kater Blau resident; Katermukke label.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #faa619"><a href="https://soundcloud.com/sascha-cawa/sascha-cawa-garbicz-2024" target="_blank" rel="noopener" style="color:#faa619">Sascha Cawa @ Garbicz 2024</a> <em>(2024 · Garbicz)</em></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="PLEASURE ISLAND" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">22:30</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#68c9d0;color:#111">PLEASURE ISLAND</span>
+      <span class="r-name">DJ Real Madrid live</span><span class="r-nat">Switzerland — Zurich (raised in the Swiss Alps)</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #68c9d0">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">22:30 – 01:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Switzerland — Zurich (raised in the Swiss Alps)</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Genre-crossing live electronica with a jazz base.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Tillmann Ostendarp; jazz musician, producer and DJ.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #68c9d0"><a href="https://soundcloud.com/djrealmadrid" target="_blank" rel="noopener" style="color:#68c9d0">Tillmann Ostendarp / DJ Real Madrid — profile</a></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="SEE" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">23:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#52caf5;color:#111">SEE</span>
+      <span class="r-name">L.F.T. presents „Hell Was Boring“ live</span><span class="r-nat">Germany</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #52caf5">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">23:00 – 00:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Electro/EBM/techno with goth and punk influence, live.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Mannequin Records shows</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Johannes Haas (Love Fist Tears). Album 'Hell Was Boring' on Mannequin Records.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #52caf5"><a href="https://soundcloud.com/mannequin-label/sets/mnq-170-lft-hell-was-boring-2xlp" target="_blank" rel="noopener" style="color:#52caf5">MNQ 170 L.F.T. - Hell Was Boring (Mannequin)</a> <em>(Mannequin Records)</em></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="WALD" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">23:30</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#0bb14b;color:#fff">WALD</span>
+      <span class="r-name">Luigi Tozzi</span><span class="r-nat">Italy — Rome</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #0bb14b">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">23:30 – 01:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Italy — Rome</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Hypnotic, atmospheric/immersive techno.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Monument, hypnotic techno scene</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">DJ, live act and producer; born and raised in Rome.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #0bb14b"><a href="https://soundcloud.com/monument-podcast/mnmt-450-luigi-tozzi" target="_blank" rel="noopener" style="color:#0bb14b">MNMT 450 - Luigi Tozzi by MONUMENT</a> <em>(Monument podcast)</em></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="WIESE" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">00:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#f0679f;color:#111">WIESE</span>
+      <span class="r-name">Paramida</span><span class="r-nat">Germany (Persian origin) — Berlin</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #f0679f">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">00:00 – 02:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany (Persian origin) — Berlin</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Eclectic house, disco, electro and breakbeat.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Dekmantel, Garbicz, Panorama Bar</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Founder of the Love On The Rocks label.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #f0679f"><a href="https://soundcloud.com/thelotradio/paramida-the-lot-radio-11-15-2024" target="_blank" rel="noopener" style="color:#f0679f">PARAMIDA @ The Lot Radio</a> <em>(15 Nov 2024)</em></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="BUK" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">00:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#b2d234;color:#111">BUK</span>
+      <span class="r-name">OK EG live</span><span class="r-nat">Australia — Melbourne</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #b2d234">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">00:00 – 01:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Australia — Melbourne</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Electro, breakbeat and melodic techno with organic textures.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Kiosk Radio</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Melbourne live project.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #b2d234"><a href="https://soundcloud.com/kioskradio/ok-eg-live-kiosk-radio-24-07" target="_blank" rel="noopener" style="color:#b2d234">OK EG (live) @ Kiosk Radio</a> <em>(24 Jul 2024)</em></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="AMBIENT FLOOR" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">00:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#72c6a5;color:#111">AMBIENT FLOOR</span>
+      <span class="r-name">Arnau Yuna</span><span class="r-nat">Spain/France (Barcelona/Paris), Berlin-based</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #72c6a5">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">00:00 – 03:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Spain/France (Barcelona/Paris), Berlin-based</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Hypnotic, deep and progressive house with melodic touches.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Roots between Barcelona and Paris; based in Berlin.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #72c6a5"><a href="https://soundcloud.com/arnau-yuna" target="_blank" rel="noopener" style="color:#72c6a5">Arnau Yuna — SoundCloud profile</a></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="LICHTUNG" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">00:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#fff78f;color:#111">LICHTUNG</span>
+      <span class="r-name">Blindsmyth</span><span class="r-nat">Germany — Berlin</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #fff78f">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">00:00 – 02:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany — Berlin</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Melodic electronica, ambient and organic techno, live.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Live project of Simon Schmidt.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #fff78f"><a href="https://soundcloud.com/blindsmyth" target="_blank" rel="noopener" style="color:#fff78f">Blindsmyth — SoundCloud profile</a></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="WEINBAR" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">00:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#d78e55;color:#111">WEINBAR</span>
+      <span class="r-name">Leona &amp; Chris.Me</span><span class="r-nat">Germany — Munich</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #d78e55">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">00:00 – 02:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany — Munich</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">House and melodic techno, b2b.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Munich duo.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="LOCO PARAISO" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">00:30</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#faa619;color:#111">LOCO PARAISO</span>
+      <span class="r-name">Rigopolar live</span><span class="r-nat">Mexico (Miami-based)</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #faa619">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">00:30 – 02:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Mexico (Miami-based)</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Melodic house/techno and organic downtempo, live.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Mayan Warrior (ArtWeek CDMX)</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Manuel Castañeda; live act.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #faa619"><a href="https://soundcloud.com/maxaxaman/rigo-polar-maxa-mayan-warrior-artweek-cdmx-2024" target="_blank" rel="noopener" style="color:#faa619">Rigopolar - Maxa x Mayan Warrior - ArtWeek CDMX 2024</a> <em>(2024 · Mayan Warrior)</em></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="WALD" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">01:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#0bb14b;color:#fff">WALD</span>
+      <span class="r-name">Gigi FM</span><span class="r-nat">France/Italy — Paris</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #0bb14b">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">01:00 – 03:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">France/Italy — Paris</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Hypnotic trance, breakbeat and ethereal techno.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Dekmantel, Sustain-Release</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Giulia Fournier-Mercadante.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #0bb14b"><a href="https://soundcloud.com/gigi-fm" target="_blank" rel="noopener" style="color:#0bb14b">GiGi FM — SoundCloud profile</a></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="BUK" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">01:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#b2d234;color:#111">BUK</span>
+      <span class="r-name">131bpm</span><span class="r-nat">Italy — Milan (unconfirmed)</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #b2d234">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">01:00 – 03:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Italy — Milan (unconfirmed)</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Fast techno/electro.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Vitamina (Milan)</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Resident of the Vitamina party in Milan since 2018.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #b2d234"><a href="https://soundcloud.com/bpm131bpm" target="_blank" rel="noopener" style="color:#b2d234">131bpm — SoundCloud profile</a></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="WIESE" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">02:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#f0679f;color:#111">WIESE</span>
+      <span class="r-name">Tasha</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #f0679f">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">02:00 – 04:00</span></div>
+      
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Ambiguous name; no reliable identification.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="LOCO PARAISO" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">02:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#faa619;color:#111">LOCO PARAISO</span>
+      <span class="r-name">Chris Schwarzwälder</span><span class="r-nat">Germany (Berlin-based)</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #faa619">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">02:00 – 04:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany (Berlin-based)</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Organic/melodic house and downtempo.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Fusion, Feathered Sun shows</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Member of Feathered Sun and of Mira &amp; Chris.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #faa619"><a href="https://soundcloud.com/shuffle/christopher-schwarzwalder-fusion-2024" target="_blank" rel="noopener" style="color:#faa619">Chris Schwarzwälder - Fusion 2024</a> <em>(2024 · Fusion)</em></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="LICHTUNG" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">02:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#fff78f;color:#111">LICHTUNG</span>
+      <span class="r-name">Leni live</span><span class="r-nat">Germany — Leipzig (ost:end collective)</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #fff78f">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">02:00 – 03:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany — Leipzig (ost:end collective)</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Melodic techno, live.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">ost:end (Leipzig)</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Connected to the ost:end club/collective in Leipzig.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #fff78f"><a href="https://soundcloud.com/ost_end/live-take-1-leni-b2b-remote" target="_blank" rel="noopener" style="color:#fff78f">live take #1: LENI &amp; anima - ost:end</a> <em>(ost:end)</em></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="WEINBAR" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">02:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#d78e55;color:#111">WEINBAR</span>
+      <span class="r-name">Mixed Methods b2b Niklas Becher</span><span class="r-nat">Australia (Sydney) &amp; Netherlands (Amsterdam)</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #d78e55">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">02:00 – 04:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Australia (Sydney) &amp; Netherlands (Amsterdam)</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">High-energy house/tech house + hypnotic melodic groove.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Method Project (Sydney)</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Mixed Methods: founder of Method Project. Niklas Becher: Amsterdam DJ/producer.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #d78e55"><a href="https://soundcloud.com/user-223750111" target="_blank" rel="noopener" style="color:#d78e55">Mixed Methods — SoundCloud profile</a></li><li style="border-left:3px solid #d78e55"><a href="https://soundcloud.com/djniklasbecher" target="_blank" rel="noopener" style="color:#d78e55">Niklas Becher — SoundCloud profile</a></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="WALD" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">03:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#0bb14b;color:#fff">WALD</span>
+      <span class="r-name">Fadi Mohem b2b Ignez</span><span class="r-nat">Germany (Berlin) &amp; Netherlands (Berlin-based)</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #0bb14b">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">03:00 – 05:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany (Berlin) &amp; Netherlands (Berlin-based)</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Functional/dark techno + hypnotic/deep techno.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Time Warp, Fusion</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Fadi Mohem: from drum'n'bass to techno. Ignez: Dutch, founder of Somov Records.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #0bb14b"><a href="https://soundcloud.com/timewarp_official/fadi-mohem-at-time-warp-mannheim-2024_1" target="_blank" rel="noopener" style="color:#0bb14b">Fadi Mohem at Time Warp GER | Mannheim 2024</a> <em>(2024 · Time Warp)</em></li><li style="border-left:3px solid #0bb14b"><a href="https://soundcloud.com/rodhad/rodhad-b2b-ignez-at-turmbuhne-fusion-2024" target="_blank" rel="noopener" style="color:#0bb14b">Rødhåd b2b Ignez at Turmbühne Fusion 2024</a> <em>(2024 · Fusion)</em></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="BUK" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">03:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#b2d234;color:#111">BUK</span>
+      <span class="r-name">Holden Sinclair</span><span class="r-nat">Germany (born in Offenbach am Main), Berlin-based</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #b2d234">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">03:00 – 05:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany (born in Offenbach am Main), Berlin-based</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Techno.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Kegel parties</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Rising figure in the Berlin scene.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #b2d234"><a href="https://soundcloud.com/holdensinclair" target="_blank" rel="noopener" style="color:#b2d234">Holden Sinclair — SoundCloud profile</a></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="AMBIENT FLOOR" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">03:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#72c6a5;color:#111">AMBIENT FLOOR</span>
+      <span class="r-name">Escuta Soundsystem</span><span class="r-nat">Brazil (tentative)</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #72c6a5">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">03:00 – 07:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Brazil (tentative)</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Soundsystem culture; likely bass/dub/global club.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Unconfirmed; Brazilian context.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="row" data-stage="WIESE" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">04:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#f0679f;color:#111">WIESE</span>
+      <span class="r-name">Amaliah</span><span class="r-nat">United Kingdom — London</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #f0679f">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">04:00 – 06:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">United Kingdom — London</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Tech house, techno and high-energy percussive sounds.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">DGTL, GALA '25</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">One of London's most distinctive DJs.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #f0679f"><a href="https://soundcloud.com/dgtl-festival/amaliah-recorded-set-dgtl-amsterdam-2024" target="_blank" rel="noopener" style="color:#f0679f">amaliah @ DGTL Amsterdam</a> <em>(31 Mar 2024)</em></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="SEE" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">04:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#52caf5;color:#111">SEE</span>
+      <span class="r-name">Acid Tears</span><span class="r-nat">Germany — Hamburg (tentative)</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #52caf5">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">04:00 – 07:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Germany — Hamburg (tentative)</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Acid house and techno.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Pudel Club (Hamburg)</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Collective/party; ambiguous identity.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #52caf5"><a href="https://soundcloud.com/hallo-radio/acid-tears-01-bobbie-levente-2304" target="_blank" rel="noopener" style="color:#52caf5">„ACID TEARS“ 01 - BOBBIE* &amp; Levente</a> <em>(23 Apr)</em></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="LOCO PARAISO" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">04:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#faa619;color:#111">LOCO PARAISO</span>
+      <span class="r-name">Theus Mago</span><span class="r-nat">Mexico</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #faa619">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">04:00 – 06:00</span></div>
+      <div class="d-field"><span class="d-lbl">Nationality / origin</span><span class="d-val nat">Mexico</span></div>
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">House, techno and dark disco.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">Tortuga Room, The Air House</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Mateo Gonzales; co-head of the Duro label.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><ul class="sets"><li style="border-left:3px solid #faa619"><a href="https://soundcloud.com/tortugaroom/theus-mago-the-9th-the-air-house-2024-x-ttgr" target="_blank" rel="noopener" style="color:#faa619">THEUS MAGO : the 9th THE AIR HOUSE 2024 x TTGR</a> <em>(2024)</em></li></ul></div>
+    </div>
+  </div>
+<div class="row" data-stage="BUK" data-day="Thursday">
+    <button class="r-head" aria-expanded="false">
+      <span class="r-caret">▸</span><span class="r-time">05:00</span><span class="r-day">Thursday</span>
+      <span class="r-stage" style="background:#b2d234;color:#111">BUK</span>
+      <span class="r-name">Rasmus Bell (BUK-Cocktailbar)</span>
+    </button>
+    <div class="r-detail" style="border-left:3px solid #b2d234">
+      <div class="d-field"><span class="d-lbl">Time</span><span class="d-val">05:00 – 08:00</span></div>
+      
+      <div class="d-field"><span class="d-lbl">Musical style</span><span class="d-val">Likely laid-back house/downtempo.</span></div>
+      <div class="d-field"><span class="d-lbl">Festivals / scenes</span><span class="d-val">—</span></div>
+      <div class="d-field"><span class="d-lbl">Artist detail</span><span class="d-val">Closing set at the BUK cocktail bar.</span></div>
+      <div class="d-field"><span class="d-lbl">Sets (SoundCloud)</span><span class="d-val muted">Not available (non-DJ act or unidentified)</span></div>
+    </div>
+  </div>
+<div class="note">52 acts, ordered by start time (13:00 → 05:00 dawn). 31 acts include SoundCloud sets (prioritising Garbicz and recent 2023–2025 recordings; profile links given where no dated set surfaced). Stage colors match the official guide; multiple stages can be selected at once. Acts marked "Not available" are non-DJ performances (ceremony, karaoke, yoga) or unidentified/ambiguous names. Data from Resident Advisor, labels, press and socials. Generated 24 Jul 2026.</div>
+</div>
+<script>
+(function(){var rows=[].slice.call(document.querySelectorAll('.row'));var fDay=document.getElementById('fDay'),cnt=document.getElementById('cnt');var chks=[].slice.call(document.querySelectorAll('.fStage'));
+function apply(){var dv=fDay.value;var act=chks.filter(function(c){return c.checked;}).map(function(c){return c.value;});var n=0;rows.forEach(function(r){var ok=(!dv||r.dataset.day===dv)&&(act.indexOf(r.dataset.stage)>-1);r.style.display=ok?'':'none';if(ok)n++;});cnt.textContent=n+' acts';}
+document.querySelectorAll('.r-head').forEach(function(h){h.addEventListener('click',function(){h.setAttribute('aria-expanded',h.getAttribute('aria-expanded')==='true'?'false':'true');});});
+fDay.addEventListener('change',apply);chks.forEach(function(c){c.addEventListener('change',apply);});
+document.getElementById('allBtn').addEventListener('click',function(){chks.forEach(function(c){c.checked=true;});apply();});
+document.getElementById('noneBtn').addEventListener('click',function(){chks.forEach(function(c){c.checked=false;});apply();});apply();})();
+</script></body></html>
